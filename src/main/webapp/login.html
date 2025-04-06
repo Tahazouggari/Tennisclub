@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - ENSIClub</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('media/loginimage.jpg');
+            /* replace with your tennis court image path */
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .login-container {
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5); /* dark overlay */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-box {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            color: black;
+            width: 400px;
+        }
+
+        .login-box h1 {
+            margin-bottom: 10px;
+        }
+
+        .login-box h3 {
+            margin-bottom: 30px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .login-box button {
+            width: 95%;
+            padding: 12px;
+            background-color: #ccc;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+
+        .remember-forgot {
+            margin-top: 10px;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .remember-forgot a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .remember-forgot a:hover {
+            text-decoration: underline;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .remember-checkbox {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .remember-checkbox input {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="login-container">
+    <form class="login-box" method="POST" action="/action?code=L">
+        <h1>Welcome to ENSIClub</h1>
+        <h3>Identify yourself:</h3>
+
+        <label for="username">Username</label>
+        <input type="text" id="username" name="email" placeholder="Enter Username" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="••••••••" required>
+
+        <button type="submit">Login</button>
+
+        <div class="remember-forgot">
+            <label class="remember-checkbox">
+                <input type="checkbox" name="remember"> Remember me
+            </label>
+            <a href="#">Forgot password?</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

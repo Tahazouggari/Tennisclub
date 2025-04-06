@@ -1,0 +1,15 @@
+input:not(:valid) {
+    border: solid red;
+}
+
+input:read-only {
+    border: dashed 1px;
+}
+
+.hiddenRow {
+    padding: 0 !important;
+}
+
+table {
+    border-collapse:collapse;
+}

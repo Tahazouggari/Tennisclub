@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_2.xsd"
+             version="3.2">
+    <persistence-unit name="tennis" transaction-type="RESOURCE_LOCAL" >
+        <class>fr.ensicaen.tennis.persistence.TodoEntity</class>
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
+            <!-- H2 file -->
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:file:~/h2/tennis;FILE_LOCK=FS;DB_CLOSE_DELAY=1;" />
+            <property name="hibernate.hbm2ddl.auto" value="update" />
+            <!-- H2 in memory -->
+<!--            <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:tennis" />-->
+<!--            <property name="hibernate.hbm2ddl.auto" value="create" />-->
+            <!-- H2 parameters -->
+            <property name="javax.persistence.jdbc.user" value="tennis" />
+            <property name="javax.persistence.jdbc.password" value="" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+            <property name="show_sql" value="true"/>
+            <property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"/>
+            <!-- DON'T DO THIS IN PRODUCTION https://thorben-janssen.com/jpa-persistence-xml/ -->
+<!--            <property name="jakarta.persistence.schema-generation.database.action" value="create" />-->
+<!--            <property name="jakarta.persistence.schema-generation.create-script-source" value="create-db.sql" />-->
+<!--            <property name="jakarta.persistence.sql-load-script-source" value="data.sql" />-->
+        </properties>
+    </persistence-unit>
+</persistence>
