@@ -1,0 +1,15 @@
+
+.retour-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #004080;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    display: inline-block;
+    font-family: 'Segoe UI', sans-serif;
+}
+.retour-button:hover {
+    background-color: #0059b3;
+}

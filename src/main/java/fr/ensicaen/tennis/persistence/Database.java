@@ -6,6 +6,7 @@ import fr.ensicaen.tennis.security.XSSRequestWrapper;
 import fr.ensicaen.tennis.ApplicationProperties;
 import jakarta.persistence.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -80,6 +81,50 @@ public class Database {
 			return null;
 		}
 	}
+
+	public List<TournoiEntity> listTournois() {
+		Query query = entityManager.createQuery("from TournoiEntity");
+		return query.getResultList();
+	}
+
+	public TournoiEntity getTournoiById(int id) {
+		return entityManager.find(TournoiEntity.class, id);
+	}
+
+	public void inscrireAdherent(int adherentId, int tournoiId) {
+		InscriptionEntity inscription = new InscriptionEntity();
+		inscription.setNumeroAdherent(adherentId);
+		inscription.setCodeTournoi(tournoiId);
+		inscription.setDateInscription(new Date());
+
+		EntityTransaction tx = entityManager.getTransaction();
+
+		if (!tx.isActive()) {
+			tx.begin();
+		}
+
+		entityManager.persist(inscription);
+
+		if (tx.isActive()) {
+			tx.commit();
+		}
+
+	}
+	public boolean estDejaInscrit(int adherentId, int tournoiId) {
+		Query query = entityManager.createQuery("""
+        SELECT COUNT(i) FROM InscriptionEntity i
+        WHERE i.numeroAdherent = :adherentId AND i.codeTournoi = :tournoiId
+    """);
+		query.setParameter("adherentId", adherentId);
+		query.setParameter("tournoiId", tournoiId);
+
+		Long count = (Long) query.getSingleResult();
+		return count > 0;
+	}
+	public AdherentEntity rafraichirAdherent(int idAdherent) {
+		return entityManager.find(AdherentEntity.class, idAdherent);
+	}
+
 
 
 }

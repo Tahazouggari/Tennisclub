@@ -21,7 +21,6 @@ public class AdherentServlet extends HttpServlet {
             return;
         }
 
-        // recharge les inscriptions si besoin (optionnel si déjà lazy-loaded)
         request.setAttribute("adherent", adherent);
         request.getRequestDispatcher("/Adherent.jsp").forward(request, response);
     }
