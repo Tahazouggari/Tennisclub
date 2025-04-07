@@ -5,19 +5,45 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
-@WebServlet(name="action", urlPatterns = "/api/action")
+@WebServlet(name = "ActionServlet", urlPatterns = "/action")
 public class ActionServlet extends HttpServlet {
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String code = req.getParameter("code");
-		PrintWriter w = resp.getWriter();
-		w.println("<HTML><BODY>");
-		w.println("<br/>Le code est : "+code);
-		w.println("</BODY></HTML");
-	}
+		HttpSession session = req.getSession(false); // ne pas créer de session ici
 
+		boolean isLoggedIn = (session != null && session.getAttribute("user") != null);
+
+		if (!isLoggedIn) {
+			// Pas encore connecté
+			if ("L".equals(code)) {
+				req.getRequestDispatcher("/LoginServlet").forward(req, resp);
+			} else {
+				req.getRequestDispatcher("/login.html").forward(req, resp);
+			}
+			return;
+		}
+
+		// Déjà connecté : router les actions
+		switch (code) {
+			case "A":
+				req.getRequestDispatcher("/AdherentServelet").forward(req, resp);
+				break;
+
+			case "I":
+				req.getRequestDispatcher("/service/inscription").forward(req, resp);
+				break;
+			case "menu":
+				req.getRequestDispatcher("/Menu.jsp").forward(req, resp);
+				break;
+
+			default:
+				req.getRequestDispatcher("/Menu.jsp").forward(req, resp);
+				break;
+		}
+	}
 }

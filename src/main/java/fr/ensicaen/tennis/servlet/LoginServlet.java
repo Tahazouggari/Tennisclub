@@ -1,27 +1,35 @@
 package fr.ensicaen.tennis.servlet;
 
+import fr.ensicaen.tennis.persistence.AdherentEntity;
+import fr.ensicaen.tennis.persistence.Database;
 
-import jakarta.servlet.*;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
+
 import java.io.IOException;
 
+@WebServlet(name = "LoginServlet", urlPatterns = "/LoginServlet")
 public class LoginServlet extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
 
-        if ("zouggari".equals(email) && "tennis".equals(password)) {
-            HttpSession session = request.getSession();
-            session.setAttribute("user", email); // Store user info if needed
+        String email = req.getParameter("email");
+        String password = req.getParameter("password");
 
-            // Redirect to the app homepage
-            response.sendRedirect("http://localhost:8080/tennis/");
+        AdherentEntity adherent = Database.getInstance().getAdherentByEmail(email);
+
+        // Vérification login
+        if (adherent != null && password.equals(adherent.getPassword())) {
+            HttpSession session = req.getSession(true);
+            session.setAttribute("adherent", adherent);
+            session.setMaxInactiveInterval(5 * 60);
+            req.getRequestDispatcher("/Menu.jsp").forward(req, resp);
         } else {
-            // Invalid login → back to login page
-            request.setAttribute("error", "Invalid login");
-            request.getRequestDispatcher("/Login.html").forward(request, response);
+            req.setAttribute("error", "Identifiants incorrects");
+            req.getRequestDispatcher("/login.html").forward(req, resp); // assure-toi que ce fichier existe
         }
+
     }
 }
-
