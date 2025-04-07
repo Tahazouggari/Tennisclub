@@ -4,12 +4,9 @@ package fr.ensicaen.tennis.persistence;
 //import fr.ensicaen.tennis.utils.PwdUtils;
 import fr.ensicaen.tennis.security.XSSRequestWrapper;
 import fr.ensicaen.tennis.ApplicationProperties;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.Query;
+import jakarta.persistence.*;
+
 import java.util.List;
-import java.util.Map;
 import java.util.regex.Pattern;
 
 /**
@@ -71,4 +68,18 @@ public class Database {
 		entityManager.getTransaction().commit();
 		return todo;
 	}
+
+	// 🔍 Récupérer un adhérent par email (pour login)
+	public AdherentEntity getAdherentByEmail(String email) {
+		if (email == null || email.isEmpty()) return null;
+		Query query = entityManager.createQuery("FROM Adherent a WHERE a.email = :email");
+		query.setParameter("email", email);
+		try {
+			return (AdherentEntity) query.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
+
+
 }

@@ -19,4 +19,8 @@
         <servlet-name>H2_CONSOLE</servlet-name>
         <url-pattern>/console/*</url-pattern>
     </servlet-mapping>
+    <session-config>
+        <session-timeout>5</session-timeout> <!-- en minutes -->
+    </session-config>
+
 </web-app>

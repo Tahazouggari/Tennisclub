@@ -9,6 +9,7 @@
 <jsp:include page="WEB-INF/includes/header.jsp">
 	<jsp:param name="credentials" value="false"/>
 </jsp:include>
+<jsp:include page="header.jsp" />
 
 <jsp:useBean id="todoBean" class="fr.ensicaen.tennis.bean.TodoBean" scope="request">
 	<%
