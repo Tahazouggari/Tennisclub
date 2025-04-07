@@ -14,12 +14,12 @@ public class ActionServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String code = req.getParameter("code");
-		HttpSession session = req.getSession(false); // ne pas créer de session ici
+		HttpSession session = req.getSession(false);
 
-		boolean isLoggedIn = (session != null && session.getAttribute("user") != null);
+		boolean isLoggedIn = (session != null && session.getAttribute("adherent") != null);
 
 		if (!isLoggedIn) {
-			// Pas encore connecté
+
 			if ("L".equals(code)) {
 				req.getRequestDispatcher("/LoginServlet").forward(req, resp);
 			} else {
@@ -28,11 +28,11 @@ public class ActionServlet extends HttpServlet {
 			return;
 		}
 
-		// Déjà connecté : router les actions
 		switch (code) {
 			case "A":
-				req.getRequestDispatcher("/AdherentServelet").forward(req, resp);
-				break;
+			req.getRequestDispatcher("/service/adherent").forward(req, resp);
+			break;
+
 
 			case "I":
 				req.getRequestDispatcher("/service/inscription").forward(req, resp);

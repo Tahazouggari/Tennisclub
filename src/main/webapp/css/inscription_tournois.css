@@ -1,0 +1,29 @@
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #ffffff;
+    padding: 40px;
+}
+h2 {
+    color: #004080;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+table th, table td {
+    border: 1px solid #004080;
+    padding: 12px;
+    text-align: center;
+}
+button {
+    padding: 8px 16px;
+    background-color: #004080;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+button:hover {
+    background-color: #0059b3;
+}

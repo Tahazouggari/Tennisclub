@@ -5,6 +5,7 @@
   Time: 5:49 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="fr.ensicaen.tennis.persistence.AdherentEntity" %>
 <%@ page session="true" %>
 
@@ -21,6 +22,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Menu principal</title>
+    <link rel="stylesheet" href="css/menu.css">
+
 </head>
 <body>
 
@@ -30,12 +33,12 @@
 
 <form method="POST" action="action">
     <input type="hidden" name="code" value="A" />
-    <button type="submit">📋 Consultation de votre dossier adhérent</button>
+    <button type="submit">Consultation de votre dossier adhérent</button>
 </form>
 
 <form method="POST" action="action">
     <input type="hidden" name="code" value="I" />
-    <button type="submit">🎾 Inscription à un tournoi</button>
+    <button type="submit">Inscription à un tournoi</button>
 </form>
 
 </body>

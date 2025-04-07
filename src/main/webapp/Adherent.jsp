@@ -22,6 +22,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/adherent.css">
+
     <title>Dossier Adhérent</title>
 </head>
 <body>

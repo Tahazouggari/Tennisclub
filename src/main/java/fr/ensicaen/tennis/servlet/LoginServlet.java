@@ -20,7 +20,7 @@ public class LoginServlet extends HttpServlet {
 
         AdherentEntity adherent = Database.getInstance().getAdherentByEmail(email);
 
-        // Vérification login
+
         if (adherent != null && password.equals(adherent.getPassword())) {
             HttpSession session = req.getSession(true);
             session.setAttribute("adherent", adherent);

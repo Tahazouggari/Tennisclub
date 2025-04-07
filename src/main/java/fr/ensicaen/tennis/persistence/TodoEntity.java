@@ -10,7 +10,7 @@ public class TodoEntity {
 
 	@Id
 	@Column(name = "id_todo")
-	// AUTO si Hibernate génère l'id, IDENTITY si c'est la BDD qui prend en charge la génération
+
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public long getIdTodo() {
 		return idTodo;
